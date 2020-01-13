@@ -43,10 +43,8 @@ NewTab = function () {
         keyElement.classList.add('key');
         keyElement.tabIndex = -1;
         keyElement.onclick = function (event) {
-            if (context.configMode) {
-                event.preventDefault();
-                context.configureKey.call(context, keyCode);
-            }
+            event.preventDefault();
+            context.handleHotkey(keyCode);
         };
         labelElement.textContent = keymap.label;
         labelElement.classList.add('label');
