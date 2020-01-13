@@ -80,7 +80,7 @@ body.active > #keys .key.pressed.configured {
     position: relative;
     border: 2px solid #e5e5e5;
     border-radius: 5px;
-    transition: opacity, box-shadow 0.15s;
+    transition: box-shadow 0.15s, opacity 0.15s;
     opacity: 0.05;
     outline: none;
 }
