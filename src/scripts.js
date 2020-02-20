@@ -122,7 +122,10 @@ NewTab = function () {
         if (this.configMode) {
             this.configureKey(keyCode);
         } else if (hotkey) {
-            window.open(hotkey.url, '_blank');
+            chrome.tabs.create({
+                url: hotkey.url,
+                active: true
+            });
             close();
         }
     };
