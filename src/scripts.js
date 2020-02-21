@@ -44,7 +44,7 @@ NewTab = function () {
         keyElement.tabIndex = -1;
         keyElement.onclick = function (event) {
             event.preventDefault();
-            context.handleHotkey(keyCode);
+            context.handleHotkey(keyCode, event.ctrlKey);
         };
         labelElement.textContent = keymap.label;
         labelElement.classList.add('label');
@@ -117,7 +117,7 @@ NewTab = function () {
             });
         });
     };
-    this.handleHotkey = function (keyCode) {
+    this.handleHotkey = function (keyCode, ctrlPressed) {
         let hotkey = this.hotkeys[keyCode];
         if (this.configMode) {
             this.configureKey(keyCode);
@@ -125,10 +125,12 @@ NewTab = function () {
             chrome.tabs.getCurrent(function (tab) {
                 chrome.tabs.create({
                     url: hotkey.url,
-                    active: true,
-                    index: tab.index
+                    active: !ctrlPressed,
+                    index: tab.index + 1
                 });
-                close();
+                if (!ctrlPressed) {
+                    close();
+                }
             });
         }
     };
