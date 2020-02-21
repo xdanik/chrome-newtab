@@ -122,11 +122,14 @@ NewTab = function () {
         if (this.configMode) {
             this.configureKey(keyCode);
         } else if (hotkey) {
-            chrome.tabs.create({
-                url: hotkey.url,
-                active: true
+            chrome.tabs.getCurrent(function (tab) {
+                chrome.tabs.create({
+                    url: hotkey.url,
+                    active: true,
+                    index: tab.index
+                });
+                close();
             });
-            close();
         }
     };
     this.init = function () {
