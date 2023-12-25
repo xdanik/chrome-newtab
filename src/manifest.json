@@ -4,7 +4,7 @@
   "author": "xdanik",
   "version": "0.4",
   "description": "Custom new tab page with shortcuts",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "permissions": [
     "storage"
   ],
